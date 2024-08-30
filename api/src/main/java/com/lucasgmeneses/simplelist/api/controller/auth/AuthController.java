@@ -1,4 +1,4 @@
-package com.lucasgmeneses.simplelist.api.controller.user;
+package com.lucasgmeneses.simplelist.api.controller.auth;
 
 import com.lucasgmeneses.simplelist.api.dto.auth.LoginRequestDTO;
 import com.lucasgmeneses.simplelist.api.dto.auth.LoginResponseDTO;

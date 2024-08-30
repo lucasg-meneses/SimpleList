@@ -1,4 +1,4 @@
-package com.lucasgmeneses.simplelist.api.dto.user;
+package com.lucasgmeneses.simplelist.api.dto.auth.user;
 
 import java.util.Date;
 

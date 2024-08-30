@@ -1,5 +1,6 @@
 package com.lucasgmeneses.simplelist.api.model.task;
 
+import com.lucasgmeneses.simplelist.api.model.auth.UserModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,11 +28,14 @@ public class TaskListModel implements Serializable {
     @Column
     private String title;
 
+    @Column(length = 7)
+    private String color;// color hex
+
     @OneToMany(mappedBy = "tasklist", fetch = FetchType.EAGER)
     private List<TaskModel> tasks;
 
-    @Column
-    private String idOwner;
+    @ManyToOne
+    private UserModel owner;
 
     @Column
     private Date dateCreated;

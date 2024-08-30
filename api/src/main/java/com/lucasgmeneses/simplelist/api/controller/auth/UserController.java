@@ -1,19 +1,16 @@
-package com.lucasgmeneses.simplelist.api.controller.user;
+package com.lucasgmeneses.simplelist.api.controller.auth;
 
-import com.lucasgmeneses.simplelist.api.dto.user.UserRequestDTO;
-import com.lucasgmeneses.simplelist.api.dto.user.UserResponseDTO;
+import com.lucasgmeneses.simplelist.api.dto.auth.user.UserRequestDTO;
+import com.lucasgmeneses.simplelist.api.dto.auth.user.UserResponseDTO;
 import com.lucasgmeneses.simplelist.api.model.auth.UserModel;
 import com.lucasgmeneses.simplelist.api.repository.auth.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.Date;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
