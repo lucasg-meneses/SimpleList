@@ -1,12 +1,22 @@
 package com.lucasgmeneses.simplelist.api.model.task;
 
+import com.lucasgmeneses.simplelist.api.model.auth.UserModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(schema = "task", name = "TB_TASK")
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class TaskModel implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -15,61 +25,24 @@ public class TaskModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Column
+    @Column(nullable = false)
     private long position;
 
-    @Column
+    @Column(nullable = false)
     private String description;
 
-    @Column
+    @Column(nullable = false)
     private boolean checked;
+
+    @ManyToOne
+    private UserModel owner;
 
     @ManyToOne
     private TaskListModel tasklist;
 
-    public TaskModel(long position, String description, boolean checked) {
-        this.position = position;
-        this.description = description;
-        this.checked = checked;
-    }
+    @Column
+    private Date dateCreated;
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
-    public long getPosition() {
-        return position;
-    }
-
-    public void setPosition(long position) {
-        this.position = position;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isChecked() {
-        return checked;
-    }
-
-    public void setChecked(boolean checked) {
-        this.checked = checked;
-    }
-
-    public TaskListModel getTasklist() {
-        return tasklist;
-    }
-
-    public void setTasklist(TaskListModel tasklist) {
-        this.tasklist = tasklist;
-    }
 }

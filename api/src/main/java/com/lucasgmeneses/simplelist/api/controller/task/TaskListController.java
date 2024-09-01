@@ -1,10 +1,12 @@
 package com.lucasgmeneses.simplelist.api.controller.task;
 
-import com.lucasgmeneses.simplelist.api.dto.task.tasklist.TaskListRequestDTO;
-import com.lucasgmeneses.simplelist.api.dto.task.tasklist.TaskListResponseDTO;
-import com.lucasgmeneses.simplelist.api.dto.task.tasklist.TaskListUpdatedRequestDTO;
+import com.lucasgmeneses.simplelist.api.dto.task.TaskListRequestDTO;
+import com.lucasgmeneses.simplelist.api.dto.task.TaskListResponseDTO;
+import com.lucasgmeneses.simplelist.api.dto.task.TaskListUpdatedRequestDTO;
+import com.lucasgmeneses.simplelist.api.dto.task.TaskResponseDTO;
 import com.lucasgmeneses.simplelist.api.model.auth.UserModel;
 import com.lucasgmeneses.simplelist.api.model.task.TaskListModel;
+import com.lucasgmeneses.simplelist.api.model.task.TaskModel;
 import com.lucasgmeneses.simplelist.api.repository.task.TaskListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 
 @RestController
@@ -106,4 +109,22 @@ public class TaskListController {
 
     }
 
+    @GetMapping("/{id}/task")
+    public ResponseEntity getTasks(@PathVariable String id){
+        TaskListModel taskList = taskListRepository.findById(id).orElse(null);
+        if(taskList != null){
+            List<TaskModel> tasks = taskList.getTasks();
+            if(tasks != null){
+                return ResponseEntity
+                        .ok(tasks.stream()
+                                .map(task -> new TaskResponseDTO(task.getId(),
+                                        task.getPosition(),
+                                        task.getDescription(),
+                                        task.isChecked(), task.getTasklist().getId(),
+                                        task.getDateCreated())).toList());
+            }
+
+        }
+        return ResponseEntity.badRequest().build();
+    }
 }

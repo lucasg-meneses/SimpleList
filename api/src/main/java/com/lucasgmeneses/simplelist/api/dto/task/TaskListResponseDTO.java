@@ -1,4 +1,4 @@
-package com.lucasgmeneses.simplelist.api.dto.task.tasklist;
+package com.lucasgmeneses.simplelist.api.dto.task;
 
 import java.util.Date;
 
