@@ -1,6 +1,5 @@
 package com.lucasgmeneses.simplelist.api.controller.task;
 
-import com.lucasgmeneses.simplelist.api.dto.task.TaskListResponseDTO;
 import com.lucasgmeneses.simplelist.api.dto.task.TaskRequestDTO;
 import com.lucasgmeneses.simplelist.api.dto.task.TaskResponseDTO;
 import com.lucasgmeneses.simplelist.api.model.auth.UserModel;
@@ -15,7 +14,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/task")
